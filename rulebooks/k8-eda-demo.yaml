@@ -5,7 +5,7 @@
         api_version: v1
         kind: ConfigMap
         namespace: default
-        kubeconfig: /home/alosadag/Documents/CNF/inbound-int/kubeconfig
+        kubeconfig: /home/runner/.kube/config
   rules:
     - name: Notify
       condition: event.type == "ADDED"
