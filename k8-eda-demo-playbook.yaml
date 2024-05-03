@@ -1,0 +1,6 @@
+- hosts: localhost
+  connection: local
+  tasks:
+    - ansible.builtin.debug:
+        #var: hostvars[inventory_hostname]
+        msg: "ConfigMap in namespace '{{ ansible_eda.event.resource.metadata.namespace }}' with name '{{ ansible_eda.event.resource.metadata.name }}' '{{ ansible_eda.event.type | capitalize }}' with the message '{{ ansible_eda.event.resource.data.message}}'"

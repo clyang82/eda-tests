@@ -1,0 +1,15 @@
+- name: Listen for events on a webhook
+  hosts: all
+
+  sources:
+   - ansible.eda.webhook:
+       host: 0.0.0.0
+       port: 5000
+
+  rules:
+   - name: Handle Red Hat Insights event
+     condition: event.payload is defined
+
+     action:
+       debug:
+         msg: "Received: {{ event.payload }}"
