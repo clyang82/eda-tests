@@ -7,13 +7,13 @@
         namespace: default
         kubeconfig: /home/alosadag/Documents/CNF/inbound-int/kubeconfig
   rules:
-#    - name: Notify
-#      condition: event.type == "ADDED"
-#      action:
-#        debug:
-    - name: Execute Playbook
+    - name: Notify
       condition: event.type == "ADDED"
       action:
-        run_playbook:
-          name: k8-eda-demo-playbook.yaml
-          set_facts: true
+        debug:
+#    - name: Execute Playbook
+#      condition: event.type == "ADDED"
+#      action:
+#        run_playbook:
+#          name: k8-eda-demo-playbook.yaml
+#          set_facts: true
