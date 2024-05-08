@@ -8,12 +8,10 @@
         kubeconfig: /home/runner/.kube/config
   rules:
     - name: Notify
-      condition: event.type == "ADDED"
+      condition: event.type is defined
+      #condition: event.type == "ADDED"
       action:
         debug:
-#    - name: Execute Playbook
-#      condition: event.type == "ADDED"
-#      action:
-#        run_playbook:
-#          name: k8-eda-demo-playbook.yaml
-#          set_facts: true
+        run_playbook:
+          name: k8-eda-demo-playbook.yaml
+          set_facts: true
