@@ -1,0 +1,15 @@
+- name: Listen for newly added ConfigMap resources
+  hosts: all
+  sources:
+    - sabre1041.eda.k8s:
+        api_version: cluster.open-cluster-management.io/v1
+        kind: ManagedCluster
+        kubeconfig: /home/runner/.kube/config
+  rules:
+    - name: Notify
+      condition: event.type == "MODIFIED"
+      action:
+        debug:
+        run_playbook:
+          name: k8-eda-demo-playbook.yaml
+          set_facts: true
