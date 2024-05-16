@@ -4,15 +4,14 @@
     - ansible.eda.kafka:
         host: kafka-kafka-tls-bootstrap-multicluster-global-hub.apps.inbound-int.se-lab.eng.rdu2.dc.redhat.com
         port: 443
-        topic: status.cnf77-leaf-hub 
+        topic: "{{ TOPIC }}"
         check_hostname: false
-        cafile: ca.crt
-        certfile: client.crt
-        keyfile: client.key 
+        cafile: "{{ CAFILE_PATH }}"
+        certfile: "{{ CERTFILE_PATH }}"
+        keyfile: "{{ KEYFILE_PATH }}"
         verify_mode: CERT_NONE
   rules:
     - name: Notify
       condition: event.body is defined
       action:
         debug:
-          msg: "Printing '{{ event }}'"
