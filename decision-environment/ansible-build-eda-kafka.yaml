@@ -1,0 +1,35 @@
+---
+version: 3
+images:
+  base_image:
+    name: 'registry.access.redhat.com/ubi9/python-312:latest'
+dependencies:
+  galaxy:
+    collections:
+      - ansible.eda
+  python:
+    - azure-servicebus
+    - aiobotocore
+    - aiohttp
+    - aiokafka
+    - watchdog
+    - systemd-python
+    - dpath
+    - ansible-rulebook
+  ansible_core:
+    package_pip: ansible-core==2.15.10
+  ansible_runner:
+    package_pip: ansible-runner
+  system:
+    - java-17-openjdk-devel [platform:rpm]
+additional_build_files:
+  - src: ../rulebooks/ca.crt 
+    dest: certs
+  - src: ../rulebooks/client.crt
+    dest: certs
+  - src: ../rulebooks/client.key
+    dest: certs
+additional_build_steps:
+  append_final:
+    - RUN chmod -R 777 /opt && mkdir -p /home/runner/certs
+    - COPY _build/certs/client.crt _build/certs/ca.crt _build/certs/client.key /home/runner/certs/
