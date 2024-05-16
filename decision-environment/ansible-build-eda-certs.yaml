@@ -1,0 +1,17 @@
+---
+version: 3
+images:
+  base_image:
+    name: 'registry.redhat.io/ansible-automation-platform-24/de-supported-rhel9:latest'
+additional_build_files:
+  - src: ../rulebooks/ca.crt 
+    dest: certs
+  - src: ../rulebooks/client.crt
+    dest: certs
+  - src: ../rulebooks/client.key
+    dest: certs
+options:
+  package_manager_path: /usr/bin/microdnf
+additional_build_steps:
+  append_final:
+    - COPY _build/certs/client.crt _build/certs/ca.crt _build/certs/client.key /home/runner/certs/
