@@ -2,7 +2,7 @@
   hosts: all
   sources:
     - ansible.eda.kafka:
-        host: kafka-kafka-tls-bootstrap-multicluster-global-hub.apps.inbound-int.se-lab.eng.rdu2.dc.redhat.com
+        host: "{{ HOST }}"
         port: 443
         topic: "{{ TOPIC }}"
         check_hostname: false
