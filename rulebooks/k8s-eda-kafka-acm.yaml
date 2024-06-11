@@ -23,8 +23,8 @@
              job_args:
                extra_vars:
                  target_hosts: cnf77-leaf-hub
-    - name: Notify
-      condition: event.body is defined
-      action:
-        debug:
+     - name: Notify
+       condition: event.body is defined
+       action:
+         debug:
     
