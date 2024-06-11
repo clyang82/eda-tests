@@ -11,18 +11,6 @@
         keyfile: "{{ KEYFILE_PATH }}"
         verify_mode: CERT_NONE
   rules:
-     - name: EDA | Kafka | Run playbook
-       condition: event.body is defined
-       actions:
-         - set_fact:
-             fact:
-               target_hosts: cnf77-leaf-hub
-         - run_job_template:
-             name: "K8S MultiCluster Management Demo"
-             organization: Default
-             job_args:
-               extra_vars:
-                 target_hosts: cnf77-leaf-hub
      - name: Notify
        condition: event.body is defined
        action:
